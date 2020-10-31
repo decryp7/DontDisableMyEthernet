@@ -7,6 +7,9 @@ platform:
 
 steps:
 - name: compile
+  environment:
+    msbuild_path:
+      from_secret: msbuild_path
   commands:
-  - C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe
+  - $msbuild_path
 
