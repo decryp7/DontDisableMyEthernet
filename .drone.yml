@@ -8,6 +8,6 @@ platform:
 steps:
 - name: compile
   commands:
-  - C:\Program Files `(x86`)\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsDevCmd.bat
-  - msbuild
+  - $msbuild = "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe"
+  - $msbuild
 
