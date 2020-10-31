@@ -2,7 +2,7 @@ kind: pipeline
 
 steps:
 - name: compile
-  image: dotnet/framework/sdk:4.8
+  image: mcr.microsoft.com/dotnet/core/sdk
   commands:
   - dotnet build
 
