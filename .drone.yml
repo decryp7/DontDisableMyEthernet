@@ -11,4 +11,4 @@ steps:
     msbuild_path:
       from_secret: msbuild_path
   commands:
-  - Invoke-MsBuild -Path DontDisableMyEthernet.sln
+  - Invoke-MsBuild -Path DontDisableMyEthernet.sln -ShowBuildOutputInCurrentWindow
