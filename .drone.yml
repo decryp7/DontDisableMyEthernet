@@ -1,8 +1,13 @@
 kind: pipeline
+type: exec
+name: default
+
+platform:
+  os: windows
 
 steps:
 - name: compile
-  image: mcr.microsoft.com/dotnet/framework/sdk
   commands:
-  - dotnet build
+  - %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsDevCmd.bat"
+  - msbuild
 
