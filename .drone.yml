@@ -11,5 +11,5 @@ steps:
     msbuild_path:
       from_secret: msbuild_path
   commands:
-  - $msbuild_path
+  - & $msbuild_path
 
