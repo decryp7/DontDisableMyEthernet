@@ -8,7 +8,7 @@ platform:
 steps:
 - name: build
   commands:
-  - Invoke-MsBuild -Path DontDisableMyEthernet.sln -ShowBuildOutputInCurrentWindow
+  - Invoke-MsBuild -Path DontDisableMyEthernet.sln -ShowBuildOutputInCurrentWindow -PassThru
 - name: create compressed package
   commands:
     - Compress-Archive -Path DontDisableMyEthernetService\bin\Debug\*.* -DestinationPath DontDisableMyEthernetService.zip
