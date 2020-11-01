@@ -6,6 +6,18 @@ platform:
   os: windows
 
 steps:
-- name: compile
+- name: build
   commands:
   - Invoke-MsBuild -Path DontDisableMyEthernet.sln -ShowBuildOutputInCurrentWindow
+- name: create compressed package
+  commands:
+    - Compress-Archive -Path DontDisableMyEthernetService\bin\Debug\*.* -DestinationPath DontDisableMyEthernetService.zip
+- name: upload artifacts
+  environment:
+    repo_username:
+      from_secret: repo_username
+    repo_password:
+      from_secret: repo_password
+  commands:
+    - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $env:repo_username,$env:repo_password)))
+    - Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -uri https://repository.decryptology.net/repository/artifacts/DontDisableMyEthernetService/DontDisableMyEthernetService.zip -Method Put -Infile DontDisableMyEthernetService.zip
