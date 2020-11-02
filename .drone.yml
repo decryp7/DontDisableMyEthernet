@@ -14,10 +14,9 @@ steps:
     - Compress-Archive -Path DontDisableMyEthernetService\bin\Debug\*.* -DestinationPath DontDisableMyEthernetService.zip
 - name: upload artifacts
   environment:
-    repo_username:
-      from_secret: repo_username
-    repo_password:
-      from_secret: repo_password
+    access_key:
+      from_secret: access_key
+    secret_key:
+      from_secret: secret_key
   commands:
-    - $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(("{0}:{1}" -f $env:repo_username,$env:repo_password)))
-    - Invoke-RestMethod -Headers @{Authorization=("Basic {0}" -f $base64AuthInfo)} -uri https://repository.decryptology.net/repository/artifacts/DontDisableMyEthernetService/DontDisableMyEthernetService.zip -Method Put -Infile DontDisableMyEthernetService.zip
+    - Write-S3Object -AccessKey env:access_key -SecretKey env:secret_key -BucketName artifacts -File DontDisableMyEthernetService.zip -EndpointUrl https://s3.decryptology.net/DontDisableMyEthernetService
