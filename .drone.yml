@@ -19,4 +19,4 @@ steps:
     secret_key:
       from_secret: secret_key
   commands:
-    - Write-S3Object -AccessKey env:access_key -SecretKey env:secret_key -BucketName artifacts -File DontDisableMyEthernetService.zip -EndpointUrl https://s3.decryptology.net
+    - Write-S3Object -AccessKey $env:access_key -SecretKey $env:secret_key -BucketName artifacts -File DontDisableMyEthernetService.zip -EndpointUrl https://s3.decryptology.net/DontDisableMyEthernetService
